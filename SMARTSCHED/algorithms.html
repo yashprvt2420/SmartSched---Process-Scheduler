@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMARTSCHED — Algorithms Catalog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SS</div>
+                <div>
+                    <b>SMART<span>SCHED</span></b>
+                    <small>CPU SCHEDULING LAB</small>
+                </div>
+            </div>
+
+            <nav>
+                <label>WORKSPACE</label>
+                <a class="nav-link" href="index.html">
+                    <span class="nav-icon">⌂</span> Dashboard
+                </a>
+                <a class="nav-link" href="scheduler.html">
+                    <span class="nav-icon">◫</span> Process Scheduler
+                </a>
+                <a class="nav-link active" href="algorithms.html">
+                    <span class="nav-icon">≡</span> Algorithms
+                </a>
+                <label>PROJECT</label>
+                <a class="nav-link" href="about.html">
+                    <span class="nav-icon">ⓘ</span> About Project
+                </a>
+            </nav>
+
+            <div class="theme-switch-container">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-label">Dark Mode</span>
+                </button>
+            </div>
+
+            <div class="side-bottom">
+                <div class="live-status">
+                    <span class="status-dot"></span>
+                    <span>SIMULATION READY</span>
+                </div>
+                <small>Client-side CPU Simulation</small>
+                <small>SMARTSCHED / v3.0 Pro</small>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="header-left">
+                    <span class="top-kicker">CURATED CATALOG &bull; OPERATING SYSTEMS</span>
+                    <h1>Scheduling Algorithms</h1>
+                    <p>Formal definitions, working mechanisms, and fundamental DSA structures powering SMARTSCHED.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open Menu">☰</button>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-label">Dark / Light</span>
+                    </button>
+                    <a class="btn small" href="scheduler.html">▶ Open Simulator</a>
+                </div>
+            </header>
+
+            <section>
+                <div class="defs">
+                    <article>
+                        <small>01 &bull; FIFO QUEUE</small>
+                        <h2>FCFS</h2>
+                        <h3>First-Come, First-Served</h3>
+                        <p>Processes execute strictly in the order of their arrival in the ready queue. Simple and deterministic.</p>
+                        <b>DATA STRUCTURE</b>
+                        <strong>Linear FIFO Queue (std::queue / Ring Buffer)</strong>
+                        <b>HOW IT WORKS</b>
+                        <ol>
+                            <li>Incoming processes enqueue at the tail.</li>
+                            <li>CPU picks the head element of the queue.</li>
+                            <li>Selected process executes to completion (non-preemptive).</li>
+                            <li>The next process in FIFO order is dispatched.</li>
+                        </ol>
+                        <footer>⚡ Tradeoff: Minimal algorithmic overhead, but prone to convoy effect where large bursts stall short jobs.</footer>
+                    </article>
+
+                    <article class="blue">
+                        <small>02 &bull; SHORTEST JOB FIRST</small>
+                        <h2>SJF</h2>
+                        <h3>Shortest Job First</h3>
+                        <p>Selects the currently available ready process that has the lowest remaining CPU burst time.</p>
+                        <b>SELECTION RULE</b>
+                        <strong>Minimum Burst Time Comparator (Min-Heap)</strong>
+                        <b>HOW IT WORKS</b>
+                        <ol>
+                            <li>Examine all arrived processes in ready queue.</li>
+                            <li>Filter candidate with minimum CPU burst requirement.</li>
+                            <li>Execute the selected process completely.</li>
+                            <li>Repeat for remaining arrived workloads.</li>
+                        </ol>
+                        <footer>⚡ Tradeoff: Mathematically proven optimal average waiting time, but susceptible to starvation of long bursts.</footer>
+                    </article>
+
+                    <article>
+                        <small>03 &bull; CIRCULAR QUEUE</small>
+                        <h2>Round Robin</h2>
+                        <h3>Preemptive Time-Quantum Slicing</h3>
+                        <p>Every process is allocated an equal slice of CPU execution time (quantum) in a cyclical ring queue.</p>
+                        <b>DATA STRUCTURE</b>
+                        <strong>Circular Queue (Array Ring Buffer)</strong>
+                        <div class="cycle">P1 → P2 → P3 → P4 ↻ [Quantum = 2ms]</div>
+                        <b>KEY PRINCIPLE</b>
+                        <p>If a process doesn't finish within its quantum slice, it is preempted and pushed to the back of the queue.</p>
+                        <footer>⚡ Tradeoff: Maximum responsiveness and fairness for timesharing systems; sensitive to quantum size tuning.</footer>
+                    </article>
+
+                    <article>
+                        <small>04 &bull; PRIORITY HEAP</small>
+                        <h2>Priority</h2>
+                        <h3>Rank-Driven Scheduling</h3>
+                        <p>CPU cycles are awarded to the available process holding the highest priority rank (numerically lowest rank in this lab).</p>
+                        <b>DATA STRUCTURE</b>
+                        <strong>Priority Queue (Binary Min-Heap)</strong>
+                        <div class="priority">
+                            P2 — Priority 1 (Highest Rank)<br>
+                            P3 — Priority 2<br>
+                            P1 — Priority 3<br>
+                            P4 — Priority 4 (Lowest Rank)
+                        </div>
+                        <b>KEY PRINCIPLE</b>
+                        <p>Simulates real-world operating systems where kernel tasks take precedence over background user processes.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

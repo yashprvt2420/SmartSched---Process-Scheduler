@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMARTSCHED — About Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SS</div>
+                <div>
+                    <b>SMART<span>SCHED</span></b>
+                    <small>CPU SCHEDULING LAB</small>
+                </div>
+            </div>
+
+            <nav>
+                <label>WORKSPACE</label>
+                <a class="nav-link" href="index.html">
+                    <span class="nav-icon">⌂</span> Dashboard
+                </a>
+                <a class="nav-link" href="scheduler.html">
+                    <span class="nav-icon">◫</span> Process Scheduler
+                </a>
+                <a class="nav-link" href="algorithms.html">
+                    <span class="nav-icon">≡</span> Algorithms
+                </a>
+                <label>PROJECT</label>
+                <a class="nav-link active" href="about.html">
+                    <span class="nav-icon">ⓘ</span> About Project
+                </a>
+            </nav>
+
+            <div class="theme-switch-container">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-label">Dark Mode</span>
+                </button>
+            </div>
+
+            <div class="side-bottom">
+                <div class="live-status">
+                    <span class="status-dot"></span>
+                    <span>SIMULATION READY</span>
+                </div>
+                <small>Client-side CPU Simulation</small>
+                <small>SMARTSCHED / v3.0 Pro</small>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="header-left">
+                    <span class="top-kicker">BEHIND THE SCENES &bull; DOCUMENTATION</span>
+                    <h1>About SMARTSCHED</h1>
+                    <p>Understanding problem formulation, simulation architecture, and recommendation logic.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open Menu">☰</button>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-label">Dark / Light</span>
+                    </button>
+                    <a class="btn small" href="scheduler.html">▶ Run Simulator</a>
+                </div>
+            </header>
+
+            <section>
+                <div class="about panel">
+                    <span class="top-kicker">PROJECT VISION</span>
+                    <h2>CPU scheduling, visualized and benchmarked.</h2>
+                    <p>
+                        SMARTSCHED bridges Operating Systems theoretical principles with Data Structures implementations.
+                        It benchmarks standard scheduling algorithms against custom user workloads
+                        and automatically highlights the scheduler with lowest average waiting time.
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <span class="section-kicker">EXECUTION PIPELINE</span>
+                <h2>How the engine works</h2>
+                <div class="architecture">
+                    <div>
+                        01
+                        <strong>Input Workload</strong>
+                        <small>PID, Arrival, Burst & Priority</small>
+                    </div>
+                    <i>→</i>
+                    <div>
+                        02
+                        <strong>Ready Queue</strong>
+                        <small>State management & memory queue</small>
+                    </div>
+                    <i>→</i>
+                    <div>
+                        03
+                        <strong>Execution Engine</strong>
+                        <small>FCFS, SJF, RR & Priority simulation</small>
+                    </div>
+                    <i>→</i>
+                    <div>
+                        04
+                        <strong>Evaluation Metric</strong>
+                        <small>AWT and turnaround timestamps</small>
+                    </div>
+                    <i>→</i>
+                    <div class="blue">
+                        05
+                        <strong>Optimal Spotlight</strong>
+                        <small>Minimum wait time champion</small>
+                    </div>
+                </div>
+            </section>
+
+            <div class="two">
+                <div class="panel text">
+                    <span class="top-kicker">PROBLEM STATEMENT</span>
+                    <h2>Why CPU scheduling matters</h2>
+                    <p>
+                        Because single CPU cores execute instructions sequentially, operating systems rely on schedulers to determine which process gains control next.
+                        Depending on process burst distributions, an algorithm can either trigger catastrophic convoys or achieve near-zero queuing delays.
+                    </p>
+                </div>
+
+                <div class="panel text">
+                    <span class="top-kicker">DECISION CRITERIA</span>
+                    <h2>Recommendation algorithm</h2>
+                    <ol>
+                        <li>Collect waiting times across all active simulation algorithms.</li>
+                        <li>Compute average waiting time (\(AWT = \frac{1}{N} \sum W_i\)).</li>
+                        <li>Identify minimum AWT candidate.</li>
+                        <li>Highlight candidate with the optimal badge and render execution timeline.</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

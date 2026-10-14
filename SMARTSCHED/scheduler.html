@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMARTSCHED — Process Scheduler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SS</div>
+                <div>
+                    <b>SMART<span>SCHED</span></b>
+                    <small>CPU SCHEDULING LAB</small>
+                </div>
+            </div>
+
+            <nav>
+                <label>WORKSPACE</label>
+                <a class="nav-link" href="index.html">
+                    <span class="nav-icon">⌂</span> Dashboard
+                </a>
+                <a class="nav-link active" href="scheduler.html">
+                    <span class="nav-icon">◫</span> Process Scheduler
+                </a>
+                <a class="nav-link" href="algorithms.html">
+                    <span class="nav-icon">≡</span> Algorithms
+                </a>
+                <label>PROJECT</label>
+                <a class="nav-link" href="about.html">
+                    <span class="nav-icon">ⓘ</span> About Project
+                </a>
+            </nav>
+
+            <div class="theme-switch-container">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-label">Dark Mode</span>
+                </button>
+            </div>
+
+            <div class="side-bottom">
+                <div class="live-status">
+                    <span class="status-dot"></span>
+                    <span>SIMULATION READY</span>
+                </div>
+                <small>Client-side CPU Simulation</small>
+                <small>SMARTSCHED / v3.0 Pro</small>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="header-left">
+                    <span class="top-kicker">SIMULATION WORKSPACE &bull; CPU LAB</span>
+                    <h1>Process Scheduler</h1>
+                    <p>Configure process workloads, simulate queuing discipline, and view real-time Gantt timelines.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open Menu">☰</button>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-label">Dark / Light</span>
+                    </button>
+                    <a class="outline" href="index.html">← Dashboard</a>
+                </div>
+            </header>
+
+            <section>
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">01 / QUEUE INPUT</span>
+                        <h2>Ready Queue Configuration</h2>
+                    </div>
+                    <button class="outline" id="reset">↺ Reset Queue</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <b>PROCESS WORKLOAD</b>
+                            <small>Define arrival, burst duration and priority ranks for each process.</small>
+                        </div>
+                        <button class="btn small" id="add">+ Add Process</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>PID</th>
+                                    <th>ARRIVAL TIME</th>
+                                    <th>BURST TIME</th>
+                                    <th>PRIORITY (1=HIGH)</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rows"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div class="two">
+                <div class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <b>SCHEDULER ENGINE</b>
+                            <small>Select simulation algorithm and quantum parameters.</small>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <label>
+                            ALGORITHM TO RUN
+                            <select id="alg">
+                                <option value="all">⚡ Compare All Algorithms (Recommended)</option>
+                                <option value="fcfs">FCFS (First Come First Serve)</option>
+                                <option value="sjf">SJF (Shortest Job First)</option>
+                                <option value="rr">Round Robin (RR)</option>
+                                <option value="priority">Priority Scheduling</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            TIME QUANTUM (ms)
+                            <input id="q" type="number" min="1" value="2">
+                        </label>
+                    </div>
+
+                    <div class="run">
+                        <button class="btn" id="run">▶ Run Simulation</button>
+                        <small>Calculates minimum waiting time across algorithms.</small>
+                    </div>
+                </div>
+
+                <div class="panel summary">
+                    <div class="panel-head">
+                        <b>QUEUE SUMMARY</b>
+                        <i>LIVE</i>
+                    </div>
+                    <div>
+                        <article>
+                            <small>TOTAL PROCESSES</small>
+                            <strong id="count">4</strong>
+                        </article>
+                        <article>
+                            <small>TOTAL BURST</small>
+                            <div><strong id="burst">21</strong> <span style="font-size: 11px; color: var(--text-muted)">ms</span></div>
+                        </article>
+                        <article>
+                            <small>TIME QUANTUM</small>
+                            <div><strong id="qd">2</strong> <span style="font-size: 11px; color: var(--text-muted)">ms</span></div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <section id="results">
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">02 / BENCHMARK & EXECUTION</span>
+                        <h2>Scheduling Analysis & Execution</h2>
+                    </div>
+                </div>
+
+                <div class="result panel">
+                    <div>
+                        <span class="top-kicker">OPTIMAL ALGORITHM SPOTLIGHT</span>
+                        <h2 id="best">Ready to Simulate</h2>
+                        <p id="desc">Simulate to discover the optimal algorithm with minimum wait time.</p>
+                    </div>
+                    <div>
+                        <small>AVERAGE WAIT TIME</small>
+                        <div><strong id="wait">—</strong> <span style="font-size: 13px; color: var(--text-muted)">ms</span></div>
+                    </div>
+                </div>
+
+                <div class="panel" style="margin-top: 16px;">
+                    <div class="panel-head">
+                        <b>ALGORITHM BENCHMARK SCORECARD</b>
+                        <small>Ranked by average waiting time</small>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ALGORITHM</th>
+                                <th>WAITING TIME</th>
+                                <th>RATING / STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="out">
+                            <tr>
+                                <td colspan="3" class="empty">
+                                    <div class="empty-state">
+                                        <span class="empty-icon">⚡</span>
+                                        <span>Click "Run Simulation" above to benchmark algorithms</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="panel gantt-panel">
+                    <div class="panel-head">
+                        <b>CPU EXECUTION TIMELINE (GANTT CHART)</b>
+                        <small>Sequence timeline of the winning scheduler</small>
+                    </div>
+                    <div id="gantt" class="gantt">
+                        <div class="gantt-empty">
+                            <span>⏱ Timeline standby — awaiting simulation trigger</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script src="js/scheduler.js"></script>
+        </main>
+    </div>
+</body>
+</html>
