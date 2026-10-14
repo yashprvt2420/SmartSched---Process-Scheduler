@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SMARTSCHED — CPU Scheduling Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme.js"></script>
+</head>
+<body>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SS</div>
+                <div>
+                    <b>SMART<span>SCHED</span></b>
+                    <small>CPU SCHEDULING LAB</small>
+                </div>
+            </div>
+
+            <nav>
+                <label>WORKSPACE</label>
+                <a class="nav-link active" href="index.html">
+                    <span class="nav-icon">⌂</span> Dashboard
+                </a>
+                <a class="nav-link" href="scheduler.html">
+                    <span class="nav-icon">◫</span> Process Scheduler
+                </a>
+                <a class="nav-link" href="algorithms.html">
+                    <span class="nav-icon">≡</span> Algorithms
+                </a>
+                <label>PROJECT</label>
+                <a class="nav-link" href="about.html">
+                    <span class="nav-icon">ⓘ</span> About Project
+                </a>
+            </nav>
+
+            <div class="theme-switch-container">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <span class="theme-icon">🌙</span>
+                    <span class="theme-label">Dark Mode</span>
+                </button>
+            </div>
+
+            <div class="side-bottom">
+                <div class="live-status">
+                    <span class="status-dot"></span>
+                    <span>SIMULATION READY</span>
+                </div>
+                <small>Client-side CPU Simulation</small>
+                <small>SMARTSCHED</small>
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="header-left">
+                    <span class="top-kicker"> &bull; CPU SCHEDULING</span>
+                    <h1>Dashboard</h1>
+                    <p>Interactive simulator for analyzing, visualizing and benchmarking CPU scheduling algorithms.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Open Menu">☰</button>
+                    <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                        <span class="theme-icon">🌙</span>
+                        <span class="theme-label">Dark / Light</span>
+                    </button>
+                    <a class="btn btn-white small" href="scheduler.html">▶ Run Simulation</a>
+                </div>
+            </header>
+
+            <section class="hero">
+                <div>
+                    <span class="hero-tag">⚡ FEATURED EXPERIMENT</span>
+                    <h2>Benchmark your queue.<br><em>Find the optimal scheduler.</em></h2>
+                    <p>
+                        Simulate FCFS, SJF, Round Robin and Priority scheduling in real-time.
+                        Automatically calculate average wait times and display animated Gantt execution timelines.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn" href="scheduler.html">▶ Launch Scheduler</a>
+                        <a class="outline" href="algorithms.html">Explore Catalog</a>
+                    </div>
+                </div>
+                <div class="cpu-visual">
+                    <div class="orbit orbit-a"></div>
+                    <div class="orbit orbit-b"></div>
+                    <div class="cpu-core">CPU</div>
+                    <span class="cpu-node n1">P1</span>
+                    <span class="cpu-node n2">P2</span>
+                    <span class="cpu-node n3">P3</span>
+                    <span class="cpu-node n4">P4</span>
+                </div>
+            </section>
+
+            <section>
+                <span class="section-kicker">OVERVIEW &bull; TOP METRICS</span>
+                <h2>What SMARTSCHED covers</h2>
+                <div class="stats">
+                    <article>
+                        <small>ALGORITHMS</small>
+                        <strong>04</strong>
+                        <p>Core CPU scheduling strategies</p>
+                    </article>
+                    <article>
+                        <small>DATA STRUCTURES</small>
+                        <strong>04</strong>
+                        <p>Queues, heaps and selection arrays</p>
+                    </article>
+                    <article>
+                        <small>PRIMARY METRIC</small>
+                        <strong>AWT</strong>
+                        <p>Average waiting time evaluation</p>
+                    </article>
+                    <article>
+                        <small>EXECUTION</small>
+                        <strong>LIVE</strong>
+                        <p>Zero backend latency simulation</p>
+                    </article>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-head">
+                    <div>
+                        <span class="section-kicker">CATALOG</span>
+                        <h2>Featured Schedulers</h2>
+                    </div>
+                    <a class="outline" href="algorithms.html">View All →</a>
+                </div>
+                <div class="cards">
+                    <article>
+                        <small>01 &bull; FIFO QUEUE</small>
+                        <h3>FCFS</h3>
+                        <p>Executes strictly in arrival order. Classic first-in, first-out pipeline.</p>
+                    </article>
+                    <article class="blue">
+                        <small>02 &bull; SHORTEST BURST</small>
+                        <h3>SJF</h3>
+                        <p>Greedy burst selection minimizing overall ready queue latency.</p>
+                    </article>
+                    <article>
+                        <small>03 &bull; TIME QUANTUM</small>
+                        <h3>Round Robin</h3>
+                        <p>Preemptive cyclic execution designed for fair interactive responsiveness.</p>
+                    </article>
+                    <article>
+                        <small>04 &bull; PRIORITY HEAP</small>
+                        <h3>Priority</h3>
+                        <p>Dispatches highest-rank processes based on predefined system priority.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
